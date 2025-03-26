@@ -23,7 +23,7 @@ function addTask(){
 
     }
     //clear input box 
-    //inputBox.value="";
+    inputBox.value="";
     //call save data function 
     saveData();
 }
