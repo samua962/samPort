@@ -1,116 +1,211 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body{
+
+body {
     background: linear-gradient(135deg, #143677, #4e085f);
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 200vh;
-margin: 0;
-padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
-/* .container{
-width: 100%;
-height: 100vh;
-background: linear-gradient(135deg, #143677, #4e085f);
-padding: 10px;
-} */
-.todo-app{
+
+.container {
     width: 100%;
     max-width: 540px;
-    background-color: #fff;
-    margin: 100px auto 20px;
-    padding: 40px 30px 70px;
-    border-radius: 10px;
-
 }
-.todo-app h2{
+
+.todo-app {
+    background: #fff;
+    padding: 2rem 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.todo-app h2 {
     color: #002765;
     display: flex;
-    font-size: 2rem;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    gap: 10px;
 }
-.todo-app h2 img{
-    width: 40px;
-    margin-left: 10px;
 
+.todo-app h2 img {
+    width: 35px;
 }
-.row{
+
+.row {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
     background: #edeef0;
     border-radius: 30px;
     padding-left: 20px;
-    margin-bottom:25px ;
-
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
 }
-input{
+
+.row:focus-within {
+    box-shadow: 0 0 0 2px rgba(20, 54, 119, 0.3);
+}
+
+#input-box {
     flex: 1;
     border: none;
     outline: none;
     background: transparent;
-    padding: 10px;
-    font-weight: 14px;
+    padding: 15px 0;
+    font-size: 1rem;
 }
-button{
+
+#add-btn {
     border: none;
     outline: none;
     padding: 16px 50px;
     background: #e71811;
     border-radius: 19px;
-color: #fff;
-font-size: 16px;
-cursor: pointer;
-}
-ul li{
-    list-style: none;
-    font-size: 17px;
-    user-select: none;
-    padding: 12px 8px 12px 50px;
-cursor: pointer;
-position: relative;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-ul li::before{
-    content:'';
+#add-btn:hover {
+    background: #c51610;
+    transform: translateY(-2px);
+}
+
+#add-btn:active {
+    transform: translateY(0);
+}
+
+#list-container {
+    list-style: none;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+#list-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+#list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#list-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#list-container li {
+    font-size: 1rem;
+    padding: 12px 50px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+#list-container li:hover {
+    background: #f5f5f5;
+}
+
+#list-container li::before {
+    content: '';
     position: absolute;
     height: 28px;
     width: 28px;
     border-radius: 50%;
-    background-image: url(image/unchecked\ \(1\).jpg);
-background-size: cover;
-background-position: center;
-top: 12px;
-left: 8px;
-
-
+    background-image: url('image/unchecked.jpg');
+    background-size: cover;
+    background-position: center;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
 }
-ul li.checked{
+
+#list-container li.checked {
     color: #555;
     text-decoration: line-through;
 }
-ul li.checked::before{
-    background-image: url(image/checked\ \(3\).jpg);
-}
-ul li span{
-    position: absolute;
-    right: 0;
-    font-weight: bold;
- width: 40px;
- height: 40px;
- font-size: 22px;
- color: #555;
- line-height: 40px;
- text-align: center;
-border-radius: 50%;
 
+#list-container li.checked::before {
+    background-image: url('image/checked.jpg');
 }
-ul li span:hover{
+
+#list-container li span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+#list-container li span:hover {
     background: #edeef0;
+    color: #e71811;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .todo-app {
+        padding: 1.5rem;
+    }
+    
+    .row {
+        flex-direction: column;
+        background: transparent;
+        gap: 10px;
+        padding-left: 0;
+    }
+    
+    #input-box {
+        width: 100%;
+        padding: 15px;
+        background: #edeef0;
+        border-radius: 30px;
+    }
+    
+    #add-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
   
+
+    .todo-app {
+        padding: 1.25rem;
+    }
+    
+    .todo-app h2 {
+        font-size: 1.5rem;
+    }
+    
+    #list-container li {
+        padding: 10px 45px 10px 45px;
+        font-size: 0.9rem;
+    }
+    
+    #list-container li::before {
+        height: 24px;
+        width: 24px;
+    }
 }
